@@ -4,24 +4,23 @@ import ProductCarousel from "@/components/view/ProductCarousel";
 import ProductsType from "@/components/view/ProductsType";
 
 async function fetchAllProductsData(){
-  // let res = await fetch(`${BASE_PATH_FORAPI}/api/products`)
+  let res = await fetch(`https://${process.env.NEXT_PUBLIC_SANITY_PROJECT_ID}.api.sanity.io/v2021-06-07/data/query/production?query=*[_type == "products"]`)
 
-  // if (!res.ok){
-  //   throw new Error("Failed to fetch")
-  // }
-  // return res.json();
-  return {response: "Hi"}
+  if (!res.ok){
+    throw new Error("Failed to fetch")
+  }
+  return res.json();
+  
 }
 
 export default async function Home() {
-  let {response} = await fetchAllProductsData();
-  console.log("response :", response);
+  let {result} = await fetchAllProductsData();
 
   return (
     <div>
       <Hero />
       <ProductsType />
-      <ProductCarousel ProductData={response} />
+      <ProductCarousel ProductData={result}/>
     </div>
   )
 }
