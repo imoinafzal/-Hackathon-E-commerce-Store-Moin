@@ -1,5 +1,7 @@
 import BASE_PATH_FORAPI from "@/components/shared/BasePath";
 import Hero from "@/components/view/Hero";
+import Jewelery from "@/components/view/Jewelery";
+import Newsletter from "@/components/view/NewsLetter";
 import ProductCarousel from "@/components/view/ProductCarousel";
 import ProductsType from "@/components/view/ProductsType";
 
@@ -21,6 +23,8 @@ export default async function Home() {
       <Hero />
       <ProductsType />
       <ProductCarousel ProductData={result}/>
+      <Jewelery />
+      <Newsletter />
     </div>
   )
 }

@@ -20,9 +20,9 @@ const Navbar = () => {
   return (
     <div className="sticky top-0 backdrop-blur-lg bg-opacityDownColor z-50">
       <div className="py-5 flex justify-between items-center space-x-12">
-        <div className="w-36 flex-shrink-0">
+        <Link href="/" className="w-36 flex-shrink-0">
           <Image width={500} height={500} src={"/logo.webp"} alt="Logo" />
-        </div>
+        </Link>
         <div className="hidden lg:flex justify-between items-center w-full">
           <ul className="flex space-x-4 lg:space-x-5 font-medium text-lg">
             {NavbarArray.map((item: NavbarItemType, index: number) => (
