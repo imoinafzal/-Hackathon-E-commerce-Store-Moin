@@ -13,10 +13,21 @@ import {
 import Link from "next/link";
 import DropDown from "./subComponent/DropDown";
 import Expand from "@/components/view/Navbar/subComponent/Expand";
+import { useRouter } from "next/navigation";
 
 const Navbar = () => {
+  const router = useRouter()
   const [isNavbarOpen, setNavbarOpen] = useState<boolean>(false);
   const [cartItemNumber, setcartItemNumber] = useState<number>(0);
+  const [SearchQuery, setSearchQuery] = useState("") ;
+
+function handleSearchCalledFun(e: any){
+console.log(e.key, e.keyCode);
+if (e.key === "Enter" && e.keyCode === 13){
+  router.push(`/search/${SearchQuery}`)
+}
+}
+
   return (
     <div className="sticky top-0 backdrop-blur-lg bg-opacityDownColor z-50">
       <div className="py-5 flex justify-between items-center space-x-12">
@@ -47,9 +58,12 @@ const Navbar = () => {
             ))}
           </ul>
           <div className="border flex items-center text-gray-600 px-3 rounded-md">
-            <BiSearch />
+            <Link href={`/search/${SearchQuery}`}><BiSearch /></Link>
             <input
               type="text"
+              value={SearchQuery}
+              onKeyDown={handleSearchCalledFun}
+              onChange={(e) => setSearchQuery(e.target.value)}
               className="focus:outline-none pr-5 pl-1 py-1 w-80"
               placeholder="Search dine market"
             />

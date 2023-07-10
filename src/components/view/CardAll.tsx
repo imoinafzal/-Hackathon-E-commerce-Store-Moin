@@ -34,7 +34,7 @@ const CardAll: FC<{ singleProductData: oneProductType }> = ({
           <p className="text-sm text-pink-500">
             {singleProductData.productTypes[0]}
           </p>
-          <p>${singleProductData.price}</p>
+          <p>Rs.{singleProductData.price}</p>
         </Link>
       </div>
     </div>
