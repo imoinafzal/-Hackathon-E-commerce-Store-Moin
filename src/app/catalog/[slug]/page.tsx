@@ -38,14 +38,15 @@ async function fetchPreviewData(slug: string) {
 }
 
 // Generating static pages for every product
+
 export async function generateStaticParams() {
-  let res = await fetch(
-    `https://crirwfkz.api.sanity.io/v2023-07-06/data/query/production?query=*[_type == 'products']`
-  ).then((res: any) => res.json());
-  return res.result.map((item: oneProductType) => {
-    slug: item.slug;
-  });
-}
+  let res = await fetch(`https://crirwfkz.api.sanity.io/v2023-07-06/data/query/production?query=*[_type == 'products']`, {
+      next: {
+          revalidate: 60
+      }
+  }).then((res: any) => res.json())
+  return res.result.map((item: oneProductType) => { slug: item.slug });
+};
 
 const Catalog = async ({ params }: { params: { slug: string } }) => {
   let data: responseType = await fetchPreviewData(params.slug);
